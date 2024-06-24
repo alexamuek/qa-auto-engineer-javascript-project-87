@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
-const path = require('path');
-const fs = require('fs');
-const _ = require('lodash');
+import { program } from 'commander';
+import path from 'path';
+import fs  from'fs';
+import _  from 'lodash';
 
 const compareValues = (value, obj) => {
   if (!Object.hasOwn(obj, value[0])) {
@@ -32,6 +32,9 @@ const joinLines = (acc, arr) => {
 const compare = (filepath1, filepath2) => {
   const path1 = path.resolve(filepath1);
   const path2 = path.resolve(filepath2);
+  if (!path1.includes('.json') || !path2.includes('.json')) {
+    throw new Error('Only json files to compare!');
+  }
   const fileData1 = fs.readFileSync(path1, { encoding: 'UTF-8', flag: 'r' });
   const fileData2 = fs.readFileSync(path2, { encoding: 'UTF-8', flag: 'r' });
   const obj1 = JSON.parse(fileData1);
