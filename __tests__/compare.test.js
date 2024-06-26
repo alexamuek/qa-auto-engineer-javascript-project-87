@@ -7,7 +7,7 @@ const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-test("functional test", () => {
+test('functional test', () => {
   const path1 = getFixturePath('file1.json');
   const path2 = getFixturePath('file2.json');
   const result = compare(path1, path2);
@@ -16,13 +16,13 @@ test("functional test", () => {
   expect(preparedResult).toBe(expectedResult);
 });
 
-test("functional test - wrong format", () => {
+test('functional test - wrong format', () => {
   const path1 = getFixturePath('file1.yml');
   const path2 = getFixturePath('file2.json');
   expect(() => compare(path1, path2)).toThrow(new Error('Only json files to compare!'));
 });
 
-test("functional test - empty json", () => {
+test('functional test - empty json', () => {
   const path1 = getFixturePath('empty.json');
   const path2 = getFixturePath('file2.json');
   const result = compare(path1, path2);
