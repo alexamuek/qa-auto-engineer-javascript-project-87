@@ -1,6 +1,6 @@
 import path from 'path';
-import fs  from'fs';
-import _  from 'lodash';
+import fs from 'fs';
+import _ from 'lodash';
 
 const compareValues = (value, obj) => {
   if (!Object.hasOwn(obj, value[0])) {

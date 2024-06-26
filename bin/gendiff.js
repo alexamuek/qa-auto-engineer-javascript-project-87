@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import compare from './compare.js';
 import { program } from 'commander';
+import compare from './compare.js';
 
 program
   .description('Compares two configuration files and shows a difference.')
