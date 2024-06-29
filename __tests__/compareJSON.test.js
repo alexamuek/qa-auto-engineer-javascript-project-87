@@ -17,9 +17,9 @@ test('functional test', () => {
 });
 
 test('functional test - wrong format', () => {
-  const path1 = getFixturePath('file1.yml');
+  const path1 = getFixturePath('file1.json1');
   const path2 = getFixturePath('file2.json');
-  expect(() => compare(path1, path2)).toThrow(new Error('Only json files to compare!'));
+  expect(() => compare(path1, path2)).toThrow(new Error('Wrong file format'));
 });
 
 test('functional test - empty json', () => {
