@@ -19,8 +19,8 @@ const compare = (filepath1, filepath2) => {
   const fileData2 = fs.readFileSync(path2, { encoding: 'UTF-8', flag: 'r' });
   const obj1 = parse(fileData1);
   const obj2 = parse(fileData2);
-  const preparedObj1 = obj1 ? obj1 : {};
-  const preparedObj2 = obj2 ? obj2 : {};
+  const preparedObj1 = obj1 || {};
+  const preparedObj2 = obj2 || {};
   return handleObjects(preparedObj1, preparedObj2);
 };
 
