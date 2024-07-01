@@ -1,19 +1,14 @@
+import getLines from './helpers.js';
+
 const addToObject = (acc, arr) => {
   const [name, value] = arr;
   acc[name] = value;
   return acc;
 };
 
-const getSign = (compareResult, fileNumber) => {
-  if (compareResult === 0) {
-    return '';
-  }
-  return fileNumber === 1 ? '- ' : '+ ';
-};
-
 const formatToJson = (arr) => {
-  const items = arr.map((item) => [getSign(item[2], item[3]) + item[0], item[1]]);
-  const obj = items.reduce(addToObject, {});
+  const lines = getLines(arr);
+  const obj = lines.reduce(addToObject, {});
   const result = JSON.stringify(obj);
   return result;
 };
