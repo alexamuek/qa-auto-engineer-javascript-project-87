@@ -6,7 +6,7 @@ const joinLines = (acc, arr) => {
 };
 
 const formatToDefault = (arr) => {
-  const lines = getLines(arr);
+  const lines = getLines(arr, 'default');
   const result = lines.reduce(joinLines, '{\n');
   return `${result}}`;
 };

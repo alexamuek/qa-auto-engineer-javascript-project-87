@@ -7,7 +7,7 @@ const addToObject = (acc, arr) => {
 };
 
 const formatToJson = (arr) => {
-  const lines = getLines(arr);
+  const lines = getLines(arr, 'json');
   const obj = lines.reduce(addToObject, {});
   const result = JSON.stringify(obj);
   return result;
