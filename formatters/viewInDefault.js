@@ -10,10 +10,10 @@ const getSign = (compareResult, fileNumber) => {
   return fileNumber === 1 ? '- ' : '+ ';
 };
 
-const formatTodefault = (arr) => {
+const formatToDefault = (arr) => {
   const lines = arr.map((item) => [getSign(item[2], item[3]) + item[0], item[1]]);
   const result = lines.reduce(joinLines, '{\n');
   return `${result}}`;
 };
 
-export default formatTodefault;
+export default formatToDefault;
