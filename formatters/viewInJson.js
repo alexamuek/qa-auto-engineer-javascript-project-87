@@ -12,8 +12,8 @@ const getSign = (compareResult, fileNumber) => {
 };
 
 const formatToJson = (arr) => {
-  const lines = arr.map((item) => [getSign(item[2], item[3]) + item[0], item[1]]);
-  const obj = lines.reduce(addToObject, {});
+  const items = arr.map((item) => [getSign(item[2], item[3]) + item[0], item[1]]);
+  const obj = items.reduce(addToObject, {});
   const result = JSON.stringify(obj);
   return result;
 };
