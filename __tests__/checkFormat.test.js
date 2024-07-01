@@ -34,13 +34,14 @@ test('functional test, default format', () => {
   expect(preparedResult).toBe(expectedResult);
 });
 
-/*test('functional test, json format', () => {
+/* test('functional test, json format', () => {
   const path1 = getFixturePath('file1.json');
   const path2 = getFixturePath('file2.json');
   const result = compare(path1, path2, 'json');
-  const expectedResult = '{"- follow":false,"host":"hexlet.io","- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}';
+  const expectedResult = '{"- follow":false,"host":"hexlet.io",
+  "- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}';
   expect(result).toBe(expectedResult);
-});*/
+  });  */
 
 test('functional test - wrong format', () => {
   const path1 = getFixturePath('file1.json');
