@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import compare from './compare.js';
+import compare from './bin/compare.js';
 
 const gendiff = () => {
   program
