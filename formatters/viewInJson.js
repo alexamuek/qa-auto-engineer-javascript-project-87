@@ -2,7 +2,8 @@ import getLines from './helpers.js';
 
 const addToObject = (acc, arr) => {
   const [name, value] = arr;
-  acc[name] = value;
+  const result = acc;
+  result[name] = value;
   return acc;
 };
 
