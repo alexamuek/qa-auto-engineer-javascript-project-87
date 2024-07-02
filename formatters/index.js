@@ -2,7 +2,7 @@ import formatToPlain from './viewInPlain.js';
 import formatToDefault from './viewInDefault.js';
 import formatToJson from './viewInJson.js';
 
-const supportedFormats = ['plain', 'default', 'json'];
+const supportedFormats = ['plain', 'json', 'stylish'];
 
 const getFormatter = (format) => {
   if (supportedFormats.indexOf(format) === -1) {
