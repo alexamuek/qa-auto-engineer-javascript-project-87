@@ -3,15 +3,11 @@ import fs from 'fs';
 import path from 'path';
 
 const parser = (path1, path2) => {
-  let parse;
   const format = path.extname(path1) + path.extname(path2);
-  if (format === '.json.json') {
-    parse = JSON.parse;
-  } else if (['.yml.yaml', '.yaml.yml', '.yml.yml', '.yaml.yaml'].indexOf(format) !== -1) {
-    parse = yaml.load;
-  } else {
+  if (['.yml.yaml', '.yaml.yml', '.yml.yml', '.yaml.yaml', '.json.json'].indexOf(format) === -1) {
     throw new Error('Wrong file format');
   }
+  const parse = format === '.json.json' ? JSON.parse : yaml.load;
   const fileData1 = fs.readFileSync(path1, { encoding: 'UTF-8', flag: 'r' });
   const fileData2 = fs.readFileSync(path2, { encoding: 'UTF-8', flag: 'r' });
   const obj1 = parse(fileData1);
