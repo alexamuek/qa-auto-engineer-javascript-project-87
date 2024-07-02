@@ -3,6 +3,7 @@ import { program } from 'commander';
 import compare from './bin/compare.js';
 
 const gendiff = () => {
+  let result;
   program
     .description('Compares two configuration files and shows a difference.')
     .argument('<filepath1>')
@@ -10,11 +11,12 @@ const gendiff = () => {
     .version('1.0.0')
     .option('-f, --format <type>', 'output format')
     .action((filepath1, filepath2, options) => {
-      console.log(compare(filepath1, filepath2, options.format));
+      result = compare(filepath1, filepath2, options.format);
     })
     .parse(process.argv);
+  return result;
 };
 
-gendiff();
+console.log(gendiff());
 
 export default gendiff;
