@@ -13,7 +13,7 @@ const gendiff = () => {
     .action((filepath1, filepath2, options) => {
       result = compare(filepath1, filepath2, options.format);
     })
-    .parse(process.argv);
+    .parse();
   return result;
 };
 
