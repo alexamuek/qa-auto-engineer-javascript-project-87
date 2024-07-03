@@ -14,8 +14,9 @@ const formatToPlain = (arr) => {
   const lines = [];
   removedProperties.reduce(
     (acc, item) => {
-      acc.push(`Property '${item[0]}' was removed`);
-      return acc;
+      // acc.push(`Property '${item[0]}' was removed`);
+      const result = [...acc, `Property '${item[0]}' was removed`];
+      return result;
     },
     lines,
   );
