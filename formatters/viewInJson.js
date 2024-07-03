@@ -2,9 +2,9 @@ import getLines from './helpers.js';
 
 const addToObject = (acc, arr) => {
   const [name, value] = arr;
-  const result = acc.map();
+  const result = { ...acc };
   result[name] = value;
-  return result;
+  return acc;
 };
 
 const formatToJson = (arr) => {
