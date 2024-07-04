@@ -1,11 +1,10 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 
 const formatToJson = (arr) => {
-  const obj = arr.reduce((acc, item) => {
-    const tmp = {};
-    tmp[item.key] = item.value;
-    return { ...acc, ...tmp };
-  }, {});
+  const filteredLines = arr.filter((item) => item.status !== 'unchanged');
+  const lines = filteredLines.map((item) => [item.key, item.value]);
+  console.log(lines);
+  const obj = _.fromPairs(lines);
   const result = JSON.stringify(obj);
   return result;
 };
