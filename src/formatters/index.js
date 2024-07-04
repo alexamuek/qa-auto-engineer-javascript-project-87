@@ -8,14 +8,13 @@ const getFormatter = (format) => {
   if (supportedFormats.indexOf(format) === -1) {
     throw new Error('Wrong output format');
   }
-  switch (format) {
-    case 'plain':
-      return formatToPlain;
-    case 'json':
-      return formatToJson;
-    default:
-      return formatToDefault;
-  }
+  const formatters = {
+    json: formatToJson,
+    plain: formatToPlain,
+    stylish: formatToDefault,
+  };
+  const result = formatters[format];
+  return result;
 };
 
 export default getFormatter;
