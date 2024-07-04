@@ -43,6 +43,14 @@ test('functional test, stylish format', () => {
   expect(preparedResult).toBe(expectedResult);
 });
 
+test('functional test, json format', () => {
+  const path1 = getFixturePath('file1.yml');
+  const path2 = getFixturePath('file2.yml');
+  const expectedResult = '{"file1":[{"key":"follow","value":false,"status":"removed","file":"file1"},{"key":"proxy","value":"123.234.53.22","status":"removed","file":"file1"},{"key":"timeout","value":50,"status":"changed","file":"file1"}],"file2":[{"key":"timeout","value":20,"status":"changed","file":"file2"},{"key":"verbose","value":true,"status":"added","file":"file2"}]}';
+  const result = compare(path1, path2, 'json');
+  expect(result).toEqual(expectedResult);
+});
+
 test('functional test - wrong format', () => {
   const path1 = getFixturePath('file1.json');
   const path2 = getFixturePath('file2.json');
