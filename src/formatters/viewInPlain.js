@@ -20,24 +20,25 @@ const collectLines = (arr) => {
 
 const formatToPlain = (sortedLines) => {
   const lines = [];
+  console.log(sortedLines);
   const preparedLines = sortedLines.reduce(
     (acc, item) => {
-      const result = [...acc];
       switch (item.status) {
         case 'removed':
-          result.push(`Property '${item.key}' was removed`);
-          break;
+          return [...acc, `Property '${item.key}' was removed`];
+          // result.push(`Property '${item.key}' was removed`);
         case 'added':
-          result.push(`Property '${item.key}' was added with value: ${item.value}`);
-          break;
+          return [...acc, `Property '${item.key}' was added with value: ${item.value}`];
+          // result.push(`Property '${item.key}' was added with value: ${item.value}`);
         default:
           break;
       }
       if (item.file === 'file2' && item.status === 'changed') {
         const values = getValues(item, sortedLines);
-        result.push(`Property '${item.key}' was updated. From ${values[0]} to ${values[1]}`);
+        return [...acc, `Property '${item.key}' was updated. From ${values[0]} to ${values[1]}`];
+        // result.push(`Property '${item.key}' was updated. From ${values[0]} to ${values[1]}`);
       }
-      return result;
+      return acc;
     },
     lines,
   );
