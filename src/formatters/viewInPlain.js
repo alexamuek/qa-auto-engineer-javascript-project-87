@@ -20,7 +20,6 @@ const collectLines = (arr) => {
 
 const formatToPlain = (sortedLines) => {
   const lines = [];
-  console.log(sortedLines);
   const preparedLines = sortedLines.reduce(
     (acc, item) => {
       switch (item.status) {
