@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import getLines from './helpers.js';
 
 const formatToJson = (arr) => {
   const lines = arr.map((item) => [item.key, item.value]);
