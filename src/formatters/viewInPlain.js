@@ -7,6 +7,17 @@ const getValues = (item, sortedLines) => {
   return [oldValue, newValue];
 };
 
+const collectLines = (arr) => {
+  const result = arr.reduce(
+    (acc, item) => {
+      const temp = `${acc}${item}\n`;
+      return temp;
+    },
+    '',
+  );
+  return result.slice(0, -1);
+};
+
 const formatToPlain = (sortedLines) => {
   const lines = [];
   const preparedLines = sortedLines.reduce(
@@ -30,14 +41,8 @@ const formatToPlain = (sortedLines) => {
     },
     lines,
   );
-  const result = preparedLines.reduce(
-    (acc, item) => {
-      const temp = `${acc}${item}\n`;
-      return temp;
-    },
-    '',
-  );
-  return result.slice(0, -1);
+  const result = collectLines(preparedLines);
+  return result;
 };
 
 export default formatToPlain;
