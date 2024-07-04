@@ -1,8 +1,11 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const formatToJson = (arr) => {
-  const lines = arr.map((item) => [item.key, item.value]);
-  const obj = _.fromPairs(lines);
+  const obj = arr.reduce((acc, item) => {
+    const tmp = {};
+    tmp[item.key] = item.value;
+    return { ...acc, ...tmp };
+  }, {});
   const result = JSON.stringify(obj);
   return result;
 };
