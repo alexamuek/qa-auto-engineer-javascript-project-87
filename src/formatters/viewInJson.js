@@ -1,15 +1,10 @@
 import getLines from './helpers.js';
 
 const addToObject = (acc, arr) => {
-  const newLine = arr.reduce(
-    (accumulator, item) => {
-      accumulator[item.key] = item.value;
-      return accumulator;
-    },
-    {},
-  );
+  const newLine = {};
+  const [key, value] = arr;
+  newLine[key] = value;
   const result = { ...acc, ...newLine };
-  // result[name] = value;
   return result;
 };
 
