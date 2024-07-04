@@ -1,27 +1,34 @@
 import _ from 'lodash';
 
-const compareValues = (value, obj) => {
+const compareValues = (value, obj, file) => {
   if (!Object.hasOwn(obj, value[0])) {
-    return -1;
+    return file === 'file1' ? 'removed' : 'added';
   }
-  return obj[value[0]] === value[1] ? 0 : 1;
+  return obj[value[0]] === value[1] ? 'unchanged' : 'changed';
 };
-/*
--1 - нет ключа
-0  - ключ и значение полностью совпадают
-1  - значения у ключа разные
-*/
+
+const findDiff = (arr, objToCompare, fileNumber) => {
+  const comparedItems = arr.map((item) => {
+    const result = {
+      key: item[0],
+      value: item[1],
+      status: compareValues(item, objToCompare, fileNumber),
+      file: fileNumber,
+    };
+    return result;
+  });
+  return comparedItems;
+};
 
 const handleObjects = (obj1, obj2, formatter) => {
 // convert objects in array
   const items1 = Object.entries(obj1);
   const items2 = Object.entries(obj2);
-  const comparedItem1 = items1.map((item) => [item[0], item[1], compareValues(item, obj2), 1]);
-  const comparedItem2 = items2.map((item) => [item[0], item[1], compareValues(item, obj1), 2]);
-  // console.log(comparedItem2);
-  const part = comparedItem2.filter((item) => item[2] !== 0);
+  const comparedItem1 = findDiff(items1, obj2, 'file1');
+  const comparedItem2 = findDiff(items2, obj1, 'file2');
+  const part = comparedItem2.filter((item) => item.status !== 'unchanged');
   const unsortedLines = comparedItem1.concat(part);
-  const sortedLines = _.sortBy(unsortedLines, [(item) => [item[0], item[3]]]);
+  const sortedLines = _.sortBy(unsortedLines, [(item) => [item.key, item.file]]);
   return formatter(sortedLines);
 };
 

@@ -4,7 +4,7 @@ const addToObject = (acc, arr) => {
   const [name, value] = arr;
   const result = { ...acc };
   result[name] = value;
-  return acc;
+  return result;
 };
 
 const formatToJson = (arr) => {
