@@ -14,3 +14,20 @@ jobs:
         run: make lint
       - name: test-coverage
         run: make test-coverage
+  coverage:
+    needs: [ test ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12'
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: 76d1790394d270c0160f72988180b38bd79ae7c5d91f708423c1316aedb6b668
+      with:
+        coverageCommand: yarn coverage
