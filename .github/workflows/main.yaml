@@ -23,7 +23,7 @@ jobs:
         node-version: '20'
     - run: npm install -g yarn
     - run: yarn install
-    - run: yarn build
+    - run: yarn run build
     - run: yarn test
   coverage:
     needs: [ test ]
@@ -36,7 +36,7 @@ jobs:
         node-version: '20'
     - run: npm install -g yarn
     - run: yarn install
-    - run: yarn build
+    - run: yarn run build
     - uses: paambaati/codeclimate-action@v2.2.4
       env:
         CC_TEST_REPORTER_ID: 76d1790394d270c0160f72988180b38bd79ae7c5d91f708423c1316aedb6b668
