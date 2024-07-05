@@ -21,6 +21,8 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '20'
+    - name: install
+        run: make install
     - run: npm test
   coverage:
     needs: [ test ]
