@@ -18,14 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      with:
-        node-version: '20'
-    - name: install
-      run: make install
-    - name: test
-      run: make test
-    - name: format code coverage
-      uses: ./.github/actions/cc-test-reporter
-      with:
-        subcommand: "format-coverage -t lcov ./coverage/lcov.info"
+    - name: Setup Code Climate
+        uses: remarkablemark/setup-codeclimate@v2
+    - name: Run Test and Upload Coverage
+      run: |
+        cc-test-reporter before-build
+        # insert your test command here
+        cc-test-reporter after-build --exit-code $?
+      env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
