@@ -18,13 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Setup Code Climate
-      uses: remarkablemark/setup-codeclimate@v2
-    - name: Run Test and Upload Coverage
-      run: |
-        cc-test-reporter format-coverage -t lcov
-        cc-test-reporter before-build
-        # insert your test command here
-        cc-test-reporter after-build --exit-code $?
+    - uses: paambaati/codeclimate-action@v5.0.0
+      # Add Code Climate secret key
       env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: make test-coverage
+        debug: true
