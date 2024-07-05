@@ -6,6 +6,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const expectedObject = {
+  file1:
+    [
+      {
+        key: 'follow', value: false, status: 'removed', file: 'file1',
+      },
+      {
+        key: 'proxy', value: '123.234.53.22', status: 'removed', file: 'file1',
+      },
+      {
+        key: 'timeout', value: 50, status: 'changed', file: 'file1',
+      },
+    ],
+  file2:
+    [
+      {
+        key: 'timeout', value: 20, status: 'changed', file: 'file2',
+      },
+      {
+        key: 'verbose', value: true, status: 'added', file: 'file2',
+      },
+    ],
+};
 
 test('functional test, format plain', () => {
   const path1 = getFixturePath('file1.json');
@@ -46,7 +69,7 @@ test('functional test, stylish format', () => {
 test('functional test, json format', () => {
   const path1 = getFixturePath('file1.yml');
   const path2 = getFixturePath('file2.yml');
-  const expectedResult = '{"file1":[{"key":"follow","value":false,"status":"removed","file":"file1"},{"key":"proxy","value":"123.234.53.22","status":"removed","file":"file1"},{"key":"timeout","value":50,"status":"changed","file":"file1"}],"file2":[{"key":"timeout","value":20,"status":"changed","file":"file2"},{"key":"verbose","value":true,"status":"added","file":"file2"}]}';
+  const expectedResult = JSON.stringify(expectedObject);
   const result = compare(path1, path2, 'json');
   expect(result).toEqual(expectedResult);
 });
