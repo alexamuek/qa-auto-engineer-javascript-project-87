@@ -25,7 +25,13 @@ jobs:
       run: make install
     - name: test
       run: make test
-    - uses: brokeyourbike/codeclimate-action@v0.1
+    - name: format code coverage
+      uses: ./.github/actions/cc-test-reporter
       with:
-        token: ${{ secrets.CC_TEST_REPORTER_ID }}
-        files: ./coverage1.xml,./coverage2.xml
+        subcommand: "format-coverage -t lcov ./coverage/lcov.info"l
+    - name: upload code coverage
+      uses: ./.github/actions/cc-test-reporter
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        subcommand: "upload-coverage"
