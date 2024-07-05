@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: install
-        run: make install
+      run: make install
     - uses: paambaati/codeclimate-action@v5.0.0
       # Add Code Climate secret key
       env:
