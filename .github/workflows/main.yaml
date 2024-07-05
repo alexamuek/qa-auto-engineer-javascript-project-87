@@ -28,7 +28,7 @@ jobs:
     - name: format code coverage
       uses: ./.github/actions/cc-test-reporter
       with:
-        subcommand: "format-coverage -t lcov ./coverage/lcov.info"l
+        subcommand: "format-coverage -t lcov ./coverage/lcov.info"
     - name: upload code coverage
       uses: ./.github/actions/cc-test-reporter
       env:
