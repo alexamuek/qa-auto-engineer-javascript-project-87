@@ -22,7 +22,7 @@ jobs:
       uses: remarkablemark/setup-codeclimate@v2
     - name: Run Test and Upload Coverage
       run: |
-        cc-test-reporter format-coverage -t lcov ./coverage/lcov.info
+        cc-test-reporter format-coverage -t lcov
         cc-test-reporter before-build
         # insert your test command here
         cc-test-reporter after-build --exit-code $?
