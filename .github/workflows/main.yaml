@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Setup Code Climate
-        uses: remarkablemark/setup-codeclimate@v2
+      uses: remarkablemark/setup-codeclimate@v2
     - name: Run Test and Upload Coverage
       run: |
         cc-test-reporter before-build
