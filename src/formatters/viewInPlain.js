@@ -1,12 +1,3 @@
-const getValues = (item, sortedLines) => {
-  const newValue = item.value;
-  const oldValue = sortedLines.filter(
-    (item1) => item1.file === 'file1'
-      && item1.key === item.key,
-  )[0].value;
-  return [oldValue, newValue];
-};
-
 const collectLines = (arr) => {
   const result = arr.reduce(
     (acc, item) => {
@@ -33,9 +24,7 @@ const formatToPlain = (sortedLines) => {
           break;
       }
       if (item.file === 'file2' && item.status === 'changed') {
-        const values = getValues(item, sortedLines);
-        return [...acc, `Property '${item.key}' was updated. From ${values[0]} to ${values[1]}`];
-        // result.push(`Property '${item.key}' was updated. From ${values[0]} to ${values[1]}`);
+        return [...acc, `Property '${item.key}' was updated. From ${item.otherValue} to ${item.value}`];
       }
       return acc;
     },

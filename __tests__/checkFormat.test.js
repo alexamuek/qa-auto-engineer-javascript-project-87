@@ -16,13 +16,13 @@ const expectedObject = {
         key: 'proxy', value: '123.234.53.22', status: 'removed', file: 'file1',
       },
       {
-        key: 'timeout', value: 50, status: 'changed', file: 'file1',
+        key: 'timeout', value: 50, status: 'changed', file: 'file1', otherValue: 20,
       },
     ],
   file2:
     [
       {
-        key: 'timeout', value: 20, status: 'changed', file: 'file2',
+        key: 'timeout', value: 20, status: 'changed', file: 'file2', otherValue: 50,
       },
       {
         key: 'verbose', value: true, status: 'added', file: 'file2',

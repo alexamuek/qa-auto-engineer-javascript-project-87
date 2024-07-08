@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 const compareValues = (value, obj, file) => {
-  if (!Object.hasOwn(obj, value[0])) {
+  if (!_.has(obj, value[0])) {
     return file === 'file1' ? 'removed' : 'added';
   }
   return obj[value[0]] === value[1] ? 'unchanged' : 'changed';
@@ -9,12 +9,16 @@ const compareValues = (value, obj, file) => {
 
 const findDiff = (arr, objToCompare, fileNumber) => {
   const comparedItems = arr.map((item) => {
+    const st = compareValues(item, objToCompare, fileNumber);
     const result = {
       key: item[0],
       value: item[1],
-      status: compareValues(item, objToCompare, fileNumber),
+      status: st,
       file: fileNumber,
     };
+    if (st === 'changed') {
+      return { ...result, otherValue: objToCompare[item[0]] };
+    }
     return result;
   });
   return comparedItems;
