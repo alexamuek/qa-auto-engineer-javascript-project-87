@@ -25,12 +25,6 @@ test('functional test - yml', () => {
   expect(preparedResult).toBe(expectedResult);
 });
 
-test('functional test - wrong format', () => {
-  const path1 = getFixturePath('file1.yaml1');
-  const path2 = getFixturePath('file2.yaml');
-  expect(() => compare(path1, path2)).toThrow(new Error('Wrong file format'));
-});
-
 test('functional test - empty json', () => {
   const path1 = getFixturePath('empty.yaml');
   const path2 = getFixturePath('file2.yaml');

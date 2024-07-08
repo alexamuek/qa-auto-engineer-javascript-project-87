@@ -14,9 +14,6 @@ const getParser = (format) => {
 
 const parse = (fileData1, fileData2, filePath) => {
   const format = path.extname(filePath);
-  if (['.yml', '.yaml', '.json'].indexOf(format) === -1) {
-    throw new Error('Wrong file format');
-  }
   const parser = getParser(format);
   const obj1 = parser(fileData1);
   const obj2 = parser(fileData2);
