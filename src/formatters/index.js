@@ -13,8 +13,7 @@ const getFormatter = (format) => {
     plain: formatToPlain,
     stylish: formatToDefault,
   };
-  const result = formatters[format];
-  return result;
+  return formatters[format];
 };
 
 export default getFormatter;

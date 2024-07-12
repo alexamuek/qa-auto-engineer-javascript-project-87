@@ -1,39 +1,29 @@
 import _ from 'lodash';
 
-const compareValues = (value, obj, file) => {
-  if (!_.has(obj, value[0])) {
-    return file === 'file1' ? 'removed' : 'added';
-  }
-  return obj[value[0]] === value[1] ? 'unchanged' : 'changed';
-};
-
-const findDiff = (arr, objToCompare, fileNumber) => {
-  const comparedItems = arr.map((item) => {
-    const st = compareValues(item, objToCompare, fileNumber);
-    const result = {
-      key: item[0],
-      value: item[1],
-      status: st,
-      file: fileNumber,
-    };
-    if (st === 'changed') {
-      return { ...result, otherValue: objToCompare[item[0]] };
+const findDiff = (obj1, obj2) => {
+  const keys = _.union(_.keys(obj1), _.keys(obj2));
+  const sortedKeys = _.sortBy(keys);
+  const diff = sortedKeys.map((k) => {
+    if (!_.has(obj1, k)) {
+      return { key: k, status: 'added', value: obj2[k] };
     }
-    return result;
+    if (!_.has(obj2, k)) {
+      return { key: k, status: 'removed', value: obj1[k] };
+    }
+    if (obj1[k] === obj2[k]) {
+      return { key: k, status: 'unchanged', value: obj1[k] };
+    }
+    return {
+      key: k, status: 'changed', value: obj2[k], previousValue: obj1[k],
+    };
   });
-  return comparedItems;
+  return diff;
 };
 
 const handleObjects = (obj1, obj2, formatter) => {
-// convert objects in array
-  const items1 = Object.entries(obj1);
-  const items2 = Object.entries(obj2);
-  const comparedItem1 = findDiff(items1, obj2, 'file1');
-  const comparedItem2 = findDiff(items2, obj1, 'file2');
-  const part = comparedItem2.filter((item) => item.status !== 'unchanged');
-  const unsortedLines = comparedItem1.concat(part);
-  const sortedLines = _.sortBy(unsortedLines, [(item) => [item.key, item.file]]);
-  return formatter(sortedLines);
+  const diff = findDiff(obj1, obj2);
+  const result = formatter(diff);
+  return result;
 };
 
 export default handleObjects;
