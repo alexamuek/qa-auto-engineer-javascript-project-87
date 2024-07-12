@@ -1,6 +1,5 @@
 import path from 'path';
 import handleObjects from './handleObjects.js';
-import parse from './parsers.js';
 import getFormatter from './formatters/index.js';
 import getData from './getFileData.js';
 
