@@ -6,9 +6,7 @@ const getParser = (format) => {
     yaml: yaml.load,
     yml: yaml.load,
   };
-  const key = format.slice(1, format.length);
-  const result = parsers[key];
-  return result;
+  return parsers[format];
 };
 
 export default getParser;

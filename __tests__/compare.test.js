@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs';
-import compare from '../src/compare.js';
+import compare from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,13 +46,11 @@ test.each(table)('functional test', ({
   const pathOfResult = getFixturePath(resultPath);
   const fileData = fs.readFileSync(pathOfResult, { encoding: 'UTF-8', flag: 'r' });
   const preparedExp = fileData.replaceAll('\n', '');
-  console.log(preparedExp);
-  console.log(preparedResult);
   expect(preparedExp).toBe(preparedResult);
 });
 
 test('functional test - wrong format', () => {
   const path1 = getFixturePath('file1.json');
   const path2 = getFixturePath('file2.json');
-  expect(() => compare(path1, path2, 'no format')).toThrow(new Error('Wrong output format'));
+  expect(() => compare(path1, path2, 'no format')).toThrow(new Error('Unknown format \'no format\''));
 });

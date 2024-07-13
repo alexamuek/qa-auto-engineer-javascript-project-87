@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const findDiff = (obj1, obj2) => {
+const buildTree = (obj1, obj2) => {
   const keys = _.union(_.keys(obj1), _.keys(obj2));
   const sortedKeys = _.sortBy(keys);
   const diff = sortedKeys.map((k) => {
@@ -20,10 +20,9 @@ const findDiff = (obj1, obj2) => {
   return diff;
 };
 
-const handleObjects = (obj1, obj2, formatter) => {
-  const diff = findDiff(obj1, obj2);
-  const result = formatter(diff);
-  return result;
+const generateDiffTree = (obj1, obj2) => {
+  const diff = buildTree(obj1, obj2);
+  return diff;
 };
 
-export default handleObjects;
+export default generateDiffTree;

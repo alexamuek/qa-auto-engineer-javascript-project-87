@@ -8,7 +8,7 @@ const getFileData = (filePath) => {
 };
 
 const parse = (fileData, filePath) => {
-  const format = path.extname(filePath);
+  const format = path.extname(filePath).slice(1);
   const parser = getParser(format);
   const obj = parser(fileData);
   const preparedObj = obj || {};

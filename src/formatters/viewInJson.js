@@ -1,7 +1,3 @@
-const formatToJson = (sortedLines) => {
-  const obj = { diff: sortedLines };
-  const result = JSON.stringify(obj);
-  return result;
-};
+const formatToJson = (sortedLines) => JSON.stringify(sortedLines);
 
 export default formatToJson;
